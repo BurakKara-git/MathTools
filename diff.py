@@ -133,34 +133,36 @@ def diff(f, x_value):
     return f(DualNumber(x_value, 1)).dual
 
 
-def foo1(x):
-    """
-    Example function: f(x) = e^(e^x * sin(x) / |x|) + x^2 - x + 5 + 1/x - log(x**2) + cos(x) - abs(x).
+if __name__ == "__main__":
+    
+    def foo1(x):
+        """
+        Example function: f(x) = e^(e^x * sin(x) / |x|) + x^2 - x + 5 + 1/x - log(x**2) + cos(x) - abs(x).
 
-    Args:
-        x (DualNumber): Dual number input.
+        Args:
+            x (DualNumber): Dual number input.
 
-    Returns:
-        DualNumber: The result of f(x).
-    """
-    return Dexp(Dexp(x) * Dsin(x)) + x**2 - 5 * x + 5 + 1 / x - Dlog(x**2) + Dcos(x) - Dabs(x)
+        Returns:
+            DualNumber: The result of f(x).
+        """
+        return Dexp(Dexp(x) * Dsin(x)) + x**2 - 5 * x + 5 + 1 / x - Dlog(x**2) + Dcos(x) - Dabs(x)
 
-def foo2(x):
-    """
-    Example function: f(x) = e^(e^x * sin(x) / |x|) + x^2 - x + 5 + 1/x - log(x**2) + cos(x).
+    def foo2(x):
+        """
+        Example function: f(x) = e^(e^x * sin(x) / |x|) + x^2 - x + 5 + 1/x - log(x**2) + cos(x).
 
-    Args:
-        x (DualNumber): Dual number input.
+        Args:
+            x (DualNumber): Dual number input.
 
-    Returns:
-        DualNumber: The result of f(x).
-    """
-    return Dexp(Dexp(x) * Dsin(x)) + x**2 - 5 * x + 5 + 1 / x - Dlog(x**2) + Dcos(x)
+        Returns:
+            DualNumber: The result of f(x).
+        """
+        return Dexp(Dexp(x) * Dsin(x)) + x**2 - 5 * x + 5 + 1 / x - Dlog(x**2) + Dcos(x)
 
-x = 10.0  # Example real value
-result = diff(foo1, x)
-print(f"Derivative at x = {x}: {result}")
+    x = 10.0  # Example real value
+    result = diff(foo1, x)
+    print(f"Derivative at x = {x}: {result}")
 
-x = 10.0 + 5j  # Example complex value
-result = diff(foo2, x)
-print(f"Derivative at x = {x}: {result}")
+    x = 10.0 + 5j  # Example complex value
+    result = diff(foo2, x)
+    print(f"Derivative at x = {x}: {result}")
